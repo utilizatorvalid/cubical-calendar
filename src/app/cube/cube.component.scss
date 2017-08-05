@@ -1,5 +1,5 @@
 $size: 450px; //cube size
-
+$face_color :#e8eaf6 ;
 .space3d {
     perspective: 1000px;
     margin-top: 100px;
@@ -20,31 +20,33 @@ $size: 450px; //cube size
     width: inherit;
     height: inherit;
     position: absolute;
-    background: red;
-    opacity: 0.5;
+    background: $face_color;
+    opacity: 0.95;
+    border-style: solid;
+    border-width: 2px;
 }
 .cube-face-front{
-    background: yellow;
+    // background: yellow;
     transform: translate3d(0, 0, $size/2); 
 }
 .cube-face-back{
-    background: orange;
+    // background: orange;
     transform: rotateY(180deg) translate3d(0,0, $size/2)
 }
 .cube-face-left {
-    background: green;
+    // background: green;
     transform: rotateY(-90deg) translate3d(0, 0, $size/2);
 }
 .cube-face-right {
-    background: magenta;
+    // background: magenta;
     transform: rotateY(90deg) translate3d(0, 0, $size/2);
 }
 .cube-face-top {
-    background: blue;
+    // background: blue;
     transform: rotateX(90deg) translate3d(0, 0, $size/2);
 }
 .cube-face-bottom {
-    background: red;
+    // background: red;
     transform: rotateX(-90deg) translate3d(0, 0, $size/2);
 }
 #radio-back:checked ~ .space3d .cube{
