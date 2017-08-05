@@ -1,0 +1,28 @@
+<input type="radio" id="radio-front" (keypress)="eventHandler($event)" class="hidden"  name="select-face"/>    
+<input type="radio" id="radio-back"   class="hidden"  name="select-face"/>
+<input type="radio" id="radio-left"   class="hidden"  name="select-face"/>
+<input type="radio" id="radio-right"  class="hidden"  name="select-face"/>
+<input type="radio" id="radio-top"    class="hidden"  name="select-face"/>
+<input type="radio" id="radio-bottom" class="hidden"  name="select-face"/>
+<div class="space3d">
+<div class="cube">
+    <div class="valign-wrapper cube-face  cube-face-front">
+        <event-face [event]="'Front'" class="face-component"></event-face>
+    </div>
+    <div class="valign-wrapper cube-face  cube-face-right">
+        <event-face [event]="'Right'" class="face-component"></event-face>
+    </div>
+    <div class="valign-wrapper cube-face  cube-face-back">
+        <event-face [event]="'Back'" class="face-component"></event-face>        
+    </div>
+    <div class="valign-wrapper cube-face  cube-face-left">
+        <event-face [event]="'Left'" class="face-component"></event-face>
+    </div>
+    <div class="valign-wrapper cube-face  cube-face-top">
+        <add-event class='face-component'>new-event..</add-event>
+    </div>
+    <div class="valign-wrapper cube-face  cube-face-bottom">
+        <about class="face-component">About us:</about>
+    </div>
+ </div>
+</div>
