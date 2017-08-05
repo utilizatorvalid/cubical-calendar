@@ -9,6 +9,33 @@
     </div>
 </footer>
     <div class="container">
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <h3 class="center-align">New Event</h3>
+            <div class="input-field col s12">
+              <i class="material-icons prefix">mode_edit</i>
+              
+              <input id="title" type="text" class="validate">
+              <label for="title">Title</label>
+            </div>
+            <div class="input-field col s12">
+              <i class="material-icons prefix">subtitles</i>
+              <textarea id="description" class="materialize-textarea"></textarea>
+              <label for="description">Description</label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="" class="modal-action modal-close waves-effect waves-green btn-flat ">Add</a>
+    </div>
+  </div>
+  
       <div class="row">
         <div class="col s12 m6 offset-m3">
             <app-cube></app-cube>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+declare var $:any;
 @Component({
   selector: 'add-event',
   templateUrl: './add-event.component.html',
@@ -11,5 +11,10 @@ export class AddEventComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  ngAfterViewInit(){
+      $('.modal').modal();
+    }
+  openEventModal(){
+    console.log("Have to open event form");
+  }
 }
