@@ -16,6 +16,7 @@
         <form class="col s12">
           <div class="row">
             <h3 class="center-align">New Event</h3>
+            <date-time-picker></date-time-picker>
             <div class="input-field col s12">
               <i class="material-icons prefix">mode_edit</i>
               
@@ -32,7 +33,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <a href="" class="modal-action modal-close waves-effect waves-green btn-flat ">Add</a>
+      <a (click) = "addNewEvent($event)"  class="modal-action modal-close waves-effect waves-green btn-flat ">Add</a>
     </div>
   </div>
   

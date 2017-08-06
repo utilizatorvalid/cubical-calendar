@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { EventServiceService } from './event-service.service'
+declare var $: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +8,26 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'My Cubical Calendar!';
+  constructor(public event_data_service: EventServiceService) {
+    // this.event_data_service.getData().subscribe((data) => {
+    //   console.log("what is in the data ", data);
+    // });
+  }
+  addNewEvent(event: Event) {
+    let date, time, title, description, image,timestamp;
+    date = $('#input_date').val();
+    time = $('#input_time').val();
+    title = $('#title').val();
+    description = $('#description').val();
+    console.log(date.toString()+" " + time.toString())
+    let t = new Date(date.toString()+ " " + time.toString())
+    timestamp = t.getTime();
+    this.event_data_service.addEvent({
+      title:title,
+      description:description,
+      timestamp:timestamp
+    })
+    console.log(date, time, title, description,timestamp);
+    console.log("add event");
+  }
 }
