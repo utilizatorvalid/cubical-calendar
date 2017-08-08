@@ -8,10 +8,14 @@ declare var $: any;
 })
 export class AppComponent {
   title = 'My Cubical Calendar!';
+  updateCube = 0;
   constructor(public event_data_service: EventServiceService) {
     // this.event_data_service.getData().subscribe((data) => {
     //   console.log("what is in the data ", data);
     // });
+  }
+  ngAfterViewInit(){
+    // this.updateCube = false;
   }
   addNewEvent(event: Event) {
     let date, time, title, description, image,timestamp;
@@ -27,7 +31,6 @@ export class AppComponent {
       description:description,
       timestamp:timestamp
     })
-    console.log(date, time, title, description,timestamp);
-    console.log("add event");
+    this.updateCube +=1;
   }
 }

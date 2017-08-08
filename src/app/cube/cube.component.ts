@@ -1,5 +1,6 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Input } from '@angular/core';
 import { EventServiceService } from '../event-service.service'
+
 @Component({
   selector: 'app-cube',
   templateUrl: './cube.component.html',
@@ -22,6 +23,7 @@ export class CubeComponent implements OnInit {
     'radio-top': ['radio-left', 'radio-right', 'radio-back', 'radio-front'],
     'radio-bottom': ['radio-left', 'radio-right', 'radio-front', 'radio-back']
   }
+  @Input() update:boolean ;
   selectedState = 'radio-front';
   next_events: any;
   constructor(public event_data_service: EventServiceService) {
@@ -30,12 +32,23 @@ export class CubeComponent implements OnInit {
   ngOnInit() {
     this.loadEvents()
   }
+  ngOnChanges(changes:any){
+    console.log(changes);
+    this.loadEvents();
+  }
   loadEvents() {
     this.event_data_service.getData().then(events => {
       console.log("events from localstorage", events);
 
         this.next_events = events
     })
+    this.update = false;
+  }
+  removeEvent(event:Event){
+    this.event_data_service.deleteEvent(event)
+    console.log("Event deleted",event);
+    this.loadEvents();
+
   }
   updateCubePosition() {
     console.log(this.selectedState);

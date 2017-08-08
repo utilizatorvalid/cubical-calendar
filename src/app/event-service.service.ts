@@ -9,8 +9,8 @@ export class EventServiceService {
   }
   getData(): Promise<any> {
     return new Promise((resolve, reject) => {
-      let data:any = this.localStorageService.get("events");
-      if(data ===null)
+      let data: any = this.localStorageService.get("events");
+      if (data === null)
         data = [];
       data.sort((e1, e2) => {
         if (e1["timestamp"] > e2["timestamp"])
@@ -33,7 +33,12 @@ export class EventServiceService {
   }
   updateEvent(oldEvent, newEvent) {
     let data: any = this.localStorageService.get('events')
-    let index = data.indexOf(oldEvent);
+    let index = -1
+    for (var i = 0; i < data.length; i++) {
+      if (JSON.stringify(data[i]) === JSON.stringify(event)) {
+        index = i;
+      }
+    }
     if (index == -1) {
       index = 0;
       data.splice(index, 0, newEvent)
@@ -41,5 +46,24 @@ export class EventServiceService {
     data[index] = newEvent;
     data.push(event);
     this.localStorageService.set('events', data);
+  }
+  deleteEvent(event) {
+    let data: any = this.localStorageService.get('events')
+    console.log("data =", data);
+    // console.log(event);
+    let index = -1
+    for (var i = 0; i < data.length; i++) {
+      if (JSON.stringify(data[i]) === JSON.stringify(event)) {
+        index = i;
+      }
+    }
+    console.log(index);
+    if (index > -1) {
+      data.splice(index, 1)
+    }
+    this.localStorageService.set('events',data);
+    // if (index == -1) {
+    //   index = 0;
+    // }
   }
 }
