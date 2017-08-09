@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Input } from '@angular/core';
+import { Component, OnInit, HostListener, Input, Output, EventEmitter} from '@angular/core';
 import { EventServiceService } from '../event-service.service'
 
 @Component({
@@ -24,6 +24,7 @@ export class CubeComponent implements OnInit {
     'radio-bottom': ['radio-left', 'radio-right', 'radio-front', 'radio-back']
   }
   @Input() update:boolean ;
+  @Output() edit_event: EventEmitter<any> = new EventEmitter;;
   selectedState = 'radio-front';
   next_events: any;
   constructor(public event_data_service: EventServiceService) {
@@ -43,6 +44,9 @@ export class CubeComponent implements OnInit {
         this.next_events = events
     })
     this.update = false;
+  }
+  editEvent(event:Event){
+    this.edit_event.emit(event)
   }
   removeEvent(event:Event){
     this.event_data_service.deleteEvent(event)

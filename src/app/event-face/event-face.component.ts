@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 declare var swal: any;
 declare var $:any;
+declare var Materialize:any;
 @Component({
   selector: 'event-face',
   templateUrl: './event-face.component.html',
@@ -10,14 +11,19 @@ declare var $:any;
 export class EventFaceComponent implements OnInit {
   @Input() event;
   @Output() delete: EventEmitter<any>= new EventEmitter;
+  @Output() edit: EventEmitter<any> = new EventEmitter;
   constructor() {
   }
 
   ngOnInit() {
-    console.log("this is event to Display", this.event);
+    // console.log("this is event to Display", this.event);
   }
   ngAfterViewInit() {
 
+  }
+  getTime(){
+    let d = new Date(this.event.timestamp) 
+    return `${d.toDateString()}   ${d.toTimeString()}`; 
   }
   deleteEvent() {
 
@@ -39,20 +45,11 @@ export class EventFaceComponent implements OnInit {
     })
   }
   editEvent() {
-    $('.modal').modal({
-      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-      opacity: .5, // Opacity of modal background
-      inDuration: 300, // Transition in duration
-      outDuration: 200, // Transition out duration
-      startingTop: '4%', // Starting top style attribute
-      endingTop: '10%', // Ending top style attribute
-      ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-        alert("Ready");
-        console.log(modal, trigger);
-      },
-      complete: function() { alert('Closed'); } // Callback for Modal close
-    }
-  );
+    this.edit.emit(this.event)
+    $('#modal2').modal("open");
+    Materialize.updateTextFields()
+
+
   }
 
 }

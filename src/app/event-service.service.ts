@@ -35,16 +35,17 @@ export class EventServiceService {
     let data: any = this.localStorageService.get('events')
     let index = -1
     for (var i = 0; i < data.length; i++) {
-      if (JSON.stringify(data[i]) === JSON.stringify(event)) {
+      if (JSON.stringify(data[i]) === JSON.stringify(oldEvent)) {
         index = i;
       }
     }
     if (index == -1) {
       index = 0;
       data.splice(index, 0, newEvent)
-    }
+    }else{
+
     data[index] = newEvent;
-    data.push(event);
+    }
     this.localStorageService.set('events', data);
   }
   deleteEvent(event) {

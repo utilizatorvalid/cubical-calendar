@@ -9,18 +9,18 @@
     </div>
 </footer>
     <div class="container">
-  <!-- Modal Structure -->
+  <!-- Modal 1 Structure -->
   <div id="modal1" class="modal modal-fixed-footer">
     <div class="modal-content">
       <div class="row">
         <form class="col s12">
           <div class="row">
             <h3 class="center-align">New Event</h3>
-            <date-time-picker></date-time-picker>
+            <date-time-picker [purpose]="'create'"></date-time-picker>
             <div class="input-field col s12">
               <i class="material-icons prefix">mode_edit</i>
               
-              <input id="title" type="text" class="validate">
+              <input id="title" type="text" class="validate" >
               <label for="title">Title</label>
             </div>
             <div class="input-field col s12">
@@ -36,10 +36,36 @@
       <a (click) = "addNewEvent($event)"  class="modal-action modal-close waves-effect waves-green btn-flat ">Add</a>
     </div>
   </div>
-  
+    <!-- Modal 2 Structure -->
+  <div id="modal2" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <h3 class="center-align">Edit Event</h3>
+            <date-time-picker id="edit_time" [purpose]="'edit'"[timestamp]="event_to_modify?.timestamp"></date-time-picker>
+            <div class="input-field col s12">
+              <i class="material-icons prefix">mode_edit</i>
+              
+              <input id="edit_title" type="text" value ="{{event_to_modify?.title}}" class="validate">
+              <label for="edit_title">Title</label>
+            </div>
+            <div class="input-field col s12">
+              <i class="material-icons prefix">subtitles</i>
+              <textarea id="edit_description"  class="materialize-textarea">{{event_to_modify?.description}}</textarea>
+              <label for="edit_description">Description</label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a (click) = "saveEditedEvent()"  class="modal-action modal-close waves-effect waves-green btn-flat ">Save Changes</a>
+    </div>
+  </div>
       <div class="row">
         <div class="col s12 m6 offset-m3">
-            <app-cube [update]="updateCube"></app-cube>
+            <app-cube (edit_event)="modifyEvent($event)" [update]="updateCube"></app-cube>
         </div>
       </div>
     
